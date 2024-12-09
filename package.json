@@ -6,33 +6,38 @@
     "lint": "npx eslint src/**/*.ts",
     "build": "tsc",
     "start": "node dist/app.js",
-    "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
-    "migration:generate": "typeorm migration:generate -d src/data-source.ts -n MigrationName",
-    "migration:run": "typeorm migration:run -d src/data-source.ts",
-    "db:clean": "ts-node src/scripts/cleanDatabase.ts",
-    "db:show": "ts-node src/scripts/showData.ts"
+    "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only src/app.ts",
+    "typeorm": "typeorm-ts-node-commonjs -d src/lib/data-source.ts",
+    "migration:generate": "npm run typeorm migration:generate src/database/migrations/CreateProductsTable",
+    "migration:run": "npm run typeorm migration:run",
+    "migration:revert": "npm run typeorm migration:revert",
+    "seed": "ts-node -r tsconfig-paths/register src/scripts/seed.ts"
+
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@faker-js/faker": "^9.3.0",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.1",
     "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.31.0",
-    "ts-node-dev": "^2.0.0"
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0"
   },
   "dependencies": {
-    "@prisma/client": "^6.0.1",
     "body-parser": "^1.20.3",
     "class-validator": "^0.14.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "prisma": "^6.0.1",
-    "sqlite3": "^5.1.7"
+    "express-validator": "^7.2.0",
+    "reflect-metadata": "^0.2.2",
+    "sqlite3": "^5.1.7",
+    "typeorm": "^0.3.20"
   }
 }
