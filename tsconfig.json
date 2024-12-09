@@ -2,6 +2,7 @@
     "compilerOptions": {
       /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
       "target": "es6",
+      "experimentalDecorators": true,                      /* Enables experimental support for ES7 decorators. */
       /* Modules */
       "module": "commonjs",                                /* Specify what module code is generated. */
       "baseUrl": "./src",
@@ -15,7 +16,17 @@
       /* Type Checking */
       "strict": true,                                      /* Enable all strict type-checking options. */
       /* Completeness */
-      "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+      "skipLibCheck": true,
+      "emitDecoratorMetadata": true,
+      "strictPropertyInitialization": false,
+      "paths": {
+        "@routes/*": ["routes/*"],
+        "@/*": ["*"],
+        "@models/*": ["models/*"],
+        "@controllers/*": ["controllers/*"],
+        "@services/*": ["services/*"],
+        "@middlewares/*": ["middlewares/*"],
+      }
     },
     "include": [
       "src/**/*.ts"
